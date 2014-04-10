@@ -193,14 +193,14 @@ vnoremap <S-Del> d"+P
 "设置代码块折叠后显示的行数
 set foldexpr=1
 
-:"if has("gui_running")
- "   set guioptions-=m " 隐藏菜单栏
- "   set guioptions-=T " 隐藏工具栏
- "   set guioptions-=L " 隐藏左侧滚动条
- "   set guioptions-=r " 隐藏右侧滚动条
- "   set guioptions-=b " 隐藏询问滚动条
- "   set guioptions=0  " 隐藏tab栏
-"endif
+if has("gui_running")
+"   set guioptions-=m " 隐藏菜单栏
+   set guioptions-=T " 隐藏工具栏
+"   set guioptions-=L " 隐藏左侧滚动条
+"   set guioptions-=r " 隐藏右侧滚动条
+"   set guioptions-=b " 隐藏询问滚动条
+"   set guioptions=0  " 隐藏tab栏
+endif
 
 "编辑vim配置文件
 if has("unix")
@@ -246,7 +246,8 @@ set termencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
 set ambiwidth=double
 "set guifont=YaHei\ Consolas\ Hybrid:h12
-set guifont=Inconsolata\ 11
+"set guifont=Inconsolata\ 11
+set guifont=Monaco\ 11
 " }}}
 
 " {{{全文搜索选中的文字
@@ -331,15 +332,19 @@ map <s-f4> :PreviousBookmark<cr>
 
 
 " {{{ plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
-" 这样，当我输入“,hl”时，就会把光标下的单词高亮，在此单词上按“,hh”会清除该单词的高亮。如果在高亮单词外输入“,hh”，会清除所有的高亮。
-" 你也可以使用virsual模式选中一段文本，然后按“,hl”，会高亮你所选中的文本；或者你可以用“,hr”来输入一个正则表达式，这会高亮所有符合这个正则表达式的文本。
+" 这样，当我输入“,hl”时，就会把光标下的单词高亮，在此单词上按“,hh”会清除该
+" 单词的高亮。如果在高亮单词外输入“,hh”，会清除所有的高亮。
+" 你也可以使用virsual模式选中一段文本，然后按“,hl”，会高亮你所选中的文本；或
+" 者你可以用“,hr”来输入一个正则表达式，这会高亮所有符合这个正则表达式的文本。
 nmap <silent> <leader>hl <plug>MarkSet
 vmap <silent> <leader>hl <plug>MarkSet
 nmap <silent> <leader>hh <plug>MarkClear
 vmap <silent> <leader>hh <plug>MarkClear
 nmap <silent> <leader>hr <plug>MarkRegex
 vmap <silent> <leader>hr <plug>MarkRegex
-" 你可以在高亮文本上使用“,#”或“,*”来上下搜索高亮文本。在使用了“,#”或“,*”后，就可以直接输入“#”或“*”来继续查找该高亮文本，直到你又用“#”或“*”查找了其它文本。
+" 你可以在高亮文本上使用“,#”或“,*”来上下搜索高亮文本。在使用了“,#”或
+" “,*”后，就可以直接输入“#”或“*”来继续查找该高亮文本，直到你又用“#”
+" 或“*”查找了其它文本。
 " <silent>* 当前MarkWord的下一个     <silent># 当前MarkWord的上一个
 " <silent>/ 所有MarkWords的下一个    <silent>? 所有MarkWords的上一个
 "- default highlightings ------------------------------------------------------
@@ -456,7 +461,7 @@ let NERDTreeWinPos='left'
 " 窗口宽度
 let NERDTreeWinSize=31
 
-let NERDTreeIgnore=['\.vim$','\~$'] "no show specified files
+let NERDTreeIgnore=['\.vim$','\~$','\*.pyc$'] "no show specified files
 let NERDTreeShowHidden=1    "show hidden file
 let NERDTreeSortOrder=['\/$','\.cpp$','\.c$','\.h$', '*']  "order
 let NERDTreeCaseSensitiveSort=0 " no case sensitive
