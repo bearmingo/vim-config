@@ -288,6 +288,45 @@ nnoremap <leader>3 :set filetype=javascript<cr>
 nnoremap <leader>4 :set filetype=php<cr>
 nnoremap <leader>5 :set filetype=c++<cr>
 
+"-----------------------------------------------
+" NeoBundle Scripts
+if has('vim_starting')
+    set nocompatible            " Be iMproved
+    "required:
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+"Required:
+call neobundle#begin(expand('~/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'Shougo/vimshell'
+" You can specify revision/branch/tag.
+" NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+NeoBundle 'bling/vim-airline'
+
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+
 " PHP Twig 模板引擎语法
 "au BufRead,BufNewFile *.twig set syntax=twig
 
@@ -461,7 +500,8 @@ let NERDTreeWinPos='left'
 " 窗口宽度
 let NERDTreeWinSize=31
 
-let NERDTreeIgnore=['\.vim$','\~$','\*.pyc$'] "no show specified files
+
+let NERDTreeIgnore=['\.vim$','\~$','\.pyc$'] "no show specified files
 let NERDTreeShowHidden=1    "show hidden file
 let NERDTreeSortOrder=['\/$','\.cpp$','\.c$','\.h$', '*']  "order
 let NERDTreeCaseSensitiveSort=0 " no case sensitive
