@@ -328,6 +328,7 @@ NeoBundle "tpope/vim-repeat"
 NeoBundle "vim-scripts/matchit.zip"
 NeoBundle "vim-scripts/tComment"
 NeoBundle "vim-scripts/jQuery"
+NeoBundle "vim-scripts/a.vim"
 NeoBundle "szw/vim-ctrlspace"
 
 " Required:
