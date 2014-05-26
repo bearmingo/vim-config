@@ -78,7 +78,7 @@ colorscheme desert
 set colorcolumn=80
 
 " 设置窗口行数和列数
-set lines=30 columns=100
+" set lines=30 columns=100
 
 " 覆盖文件时不备份
 set nobackup
@@ -247,7 +247,7 @@ set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
 set ambiwidth=double
 "set guifont=YaHei\ Consolas\ Hybrid:h12
 "set guifont=Inconsolata\ 11
-set guifont=Monaco\ 11
+set guifont=Monaco\ 12
 " }}}
 
 " {{{全文搜索选中的文字
@@ -328,6 +328,7 @@ NeoBundle "tpope/vim-repeat"
 NeoBundle "vim-scripts/matchit.zip"
 NeoBundle "vim-scripts/tComment"
 NeoBundle "vim-scripts/jQuery"
+NeoBundle "szw/vim-ctrlspace"
 
 " Required:
 call neobundle#end()
