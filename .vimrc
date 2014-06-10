@@ -84,7 +84,7 @@ set colorcolumn=80
 set nobackup
 
 " 自动切换当前目录为当前文件所在的目录
-set autochdir
+" set autochdir
 
 " 搜索时忽略大小写，但在在一个或以上大小写字母时仍大小写敏感
 set ignorecase
@@ -331,6 +331,13 @@ NeoBundle "vim-scripts/jQuery"
 NeoBundle "vim-scripts/a.vim"
 NeoBundle "szw/vim-ctrlspace"
 
+" For python
+NeoBundle "klen/python-mode.git"
+NeoBundle "scrooloose/syntastic.git"   " Replace pyflake
+
+"For django template
+NeoBundle "vim-scripts/django.vim"
+
 " Required:
 call neobundle#end()
 
@@ -518,7 +525,7 @@ let NERDTreeWinSize=31
 
 
 let NERDTreeIgnore=['\.vim$','\~$','\.pyc$'] "no show specified files
-let NERDTreeShowHidden=1    "show hidden file
+let NERDTreeShowHidden=0    "show hidden file
 let NERDTreeSortOrder=['\/$','\.cpp$','\.c$','\.h$', '*']  "order
 let NERDTreeCaseSensitiveSort=0 " no case sensitive
 let NERDTreeWinSize=30
@@ -715,3 +722,13 @@ map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 augroup filetype
     au! BufRead,BufNewFile *.proto setfiletype proto
 augroup end
+
+" {{{
+" python mode
+let g:pymode_lint_ignore = 'E111,W0311'
+let g:pymode_lint_checkers = ['pyflakes']
+" }}}
+
+" Django 
+" Set for django template 
+au BufReadPost *.djhtml setlocal filetype=htmldjango shiftwidth=2
