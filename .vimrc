@@ -1,8 +1,10 @@
-set nocompatible
+
+" Load default settings
 source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
 
+" 
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -28,12 +30,16 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim base settings
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"设置leader为,
+"set leader ','
 let mapleader=","
 let g:mapleader=","
 
-" 关闭vi兼容模式
+" close compatible mode
 set nocompatible
 
 " 自动语法高亮
@@ -288,6 +294,11 @@ nnoremap <leader>3 :set filetype=javascript<cr>
 nnoremap <leader>4 :set filetype=php<cr>
 nnoremap <leader>5 :set filetype=c++<cr>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "-----------------------------------------------------------------------------
 " NeoBundle Scripts
 "
@@ -315,9 +326,9 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'bling/vim-airline'
-NeoBundle "MarcWeber/vim-addon-mw-utils"
-NeoBundle "tomtom/tlib_vim"
-NeoBundle "garbas/vim-snipmate"
+" NeoBundle "MarcWeber/vim-addon-mw-utils"
+" NeoBundle "tomtom/tlib_vim"
+" NeoBundle "garbas/vim-snipmate"
 NeoBundle "pangloss/vim-javascript"
 NeoBundle "scrooloose/nerdtree"
 NeoBundle "tpope/vim-git"
@@ -435,6 +446,30 @@ let g:user_zen_settings = {
 \}
 " }}}
 
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+xmap <C-l>     <Plug>(neosnippet_start_unite_snippet_target)
+
+" {{{ neosnippet plugin settings
+" SuperTab like snippets behavior.
+"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)"
+" \: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" }}}
 
 " {{{ plugin - auto_mkdir.vim 自动创建目录
 " }}}
@@ -568,12 +603,10 @@ nnoremap <silent> <F3> :Grep<CR>
 
 
 "language messages zh_CN.utf-8
-
 set fileencodings=utf-8,gbk,gb2312
 
-set nobackup
 
-behave mswin
+" behave mswin
 
 "-------------------------------------------------------------------------
 """NERD_tree
@@ -718,10 +751,6 @@ map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 " :ColorToggle     - toggle highlights
 " }}}
 
-" protobuf .proto
-augroup filetype
-    au! BufRead,BufNewFile *.proto setfiletype proto
-augroup end
 
 " {{{
 " python mode
@@ -729,6 +758,17 @@ let g:pymode_lint_ignore = 'E111,W0311'
 let g:pymode_lint_checkers = ['pyflakes']
 " }}}
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Settings for specified language
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Django 
 " Set for django template 
 au BufReadPost *.djhtml setlocal filetype=htmldjango shiftwidth=2
+
+" protobuf .proto
+augroup filetype
+    au! BufRead,BufNewFile *.proto setfiletype proto
+augroup end
