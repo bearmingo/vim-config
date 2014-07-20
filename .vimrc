@@ -305,7 +305,11 @@ nnoremap <leader>5 :set filetype=c++<cr>
 if has('vim_starting')
     set nocompatible            " Be iMproved
     "required:
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    if has('unix')
+        set runtimepath+=~/.vim/bundle/neobundle.vim/
+    else
+        set runtimepath+=$VIM/vimfiles/bundle/neobundle.vim/
+    endif
 endif
 
 "Required:
