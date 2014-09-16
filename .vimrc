@@ -364,6 +364,9 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
+if has("win32") 
+    let g:ctrlspace_default_mapping_key = "<S-Space>"
+endif
 
 " PHP Twig 模板引擎语法
 "au BufRead,BufNewFile *.twig set syntax=twig
