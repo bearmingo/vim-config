@@ -345,6 +345,7 @@ NeoBundle "vim-scripts/tComment"
 NeoBundle "vim-scripts/jQuery"
 NeoBundle "vim-scripts/a.vim"
 NeoBundle "szw/vim-ctrlspace"
+NeoBundle "KohPoll/vim-less.git"
 
 " For python
 NeoBundle "klen/python-mode.git"
@@ -364,9 +365,12 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
-if has("win32") 
-    let g:ctrlspace_default_mapping_key = "<S-Space>"
-endif
+
+" change CtrlSpace key map in win32
+"if has("win32")
+let g:ctrlspace_default_mapping_key = "<S-Space>"
+"endif
+
 
 " PHP Twig 模板引擎语法
 "au BufRead,BufNewFile *.twig set syntax=twig
