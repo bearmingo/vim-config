@@ -1,4 +1,6 @@
 .netrwhist 
 *.pyc
 
+#undo temp directory
+_undodir
 bundle/

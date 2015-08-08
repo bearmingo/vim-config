@@ -52,6 +52,11 @@ filetype on
 " 检测文件类型插件
 filetype plugin on
 
+" Save undofile in directory
+set undofile
+set undodir=~/.vim/\_undodir
+set undolevels=100
+
 " 不设定在插入状态无涯使用退格键和Delete键删除回车符
 set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
