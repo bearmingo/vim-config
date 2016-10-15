@@ -258,7 +258,7 @@ set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
 set ambiwidth=double
 "set guifont=YaHei\ Consolas\ Hybrid:h12
 "set guifont=Inconsolata\ 11
-set guifont=Monaco\ 12
+set guifont=Monaco:h11
 " }}}
 
 " {{{全文搜索选中的文字
@@ -313,12 +313,17 @@ if has('vim_starting')
     if has('unix')
         set runtimepath+=~/.vim/bundle/neobundle.vim/
     else
-        set runtimepath+=$VIM/vimfiles/bundle/neobundle.vim/
+        set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
     endif
 endif
 
 "Required:
-call neobundle#begin(expand('~/.vim/bundle'))
+if has('unix')
+    call neobundle#begin(expand('~/.vim/bundle'))
+else
+    call neobundle#begin(expand('$HOME/vimfiles/bundle'))
+endif
+
 
 " Let NeoBundle manage NeoBundle
 " Required:
