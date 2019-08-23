@@ -4,3 +4,7 @@ vim-config
 ## Install
 1. Clone this repo to '<user-home>/.vim'. `git clone https://github.com/bearmingo/vim-config.git`
 2. run `git submodule update --init --recursive`
+
+## Fonts
+
+Install fonts in `./fonts/MONACO.TTF` to system

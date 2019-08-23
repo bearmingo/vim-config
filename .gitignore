@@ -1,5 +1,6 @@
 .netrwhist 
 *.pyc
+*.swp
 
 #undo temp directory
 _undodir

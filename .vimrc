@@ -1,38 +1,7 @@
-
-" Load default settings
-source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
-"behave mswin
-
-" 
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+" vim: set ts=2 sw=2 :
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim base settings
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "set leader ','
@@ -47,10 +16,10 @@ syntax on
 syntax enable
 
 " 检测文件类型
-filetype on
+" filetype off
 
 " 检测文件类型插件
-filetype plugin on
+" filetype plugin on
 
 " Save undofile in directory
 set undofile
@@ -292,11 +261,11 @@ inoremap <c-l> <Right>
 inoremap <c-j> <c-o>gj
 inoremap <c-k> <c-o>gk
 
-"一些不错的映射转换语法(如果在一个文件中混合不同语言时有用)
-nnoremap <leader>1 :set filetype=xhtml<cr>
-nnoremap <leader>2 :set filetype=css<cr>
+"一些不错的映射转换语法(如果在一个文件中混合不同语言时有用
+nnoremap <leader>1 :set filetype=xml<cr>
+nnoremap <leader>2 :set filetype=json<cr>
 nnoremap <leader>3 :set filetype=javascript<cr>
-nnoremap <leader>4 :set filetype=php<cr>
+nnoremap <leader>4 :set filetype=python<cr>
 nnoremap <leader>5 :set filetype=c++<cr>
 
 
@@ -304,76 +273,76 @@ nnoremap <leader>5 :set filetype=c++<cr>
 " Plugins Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"-----------------------------------------------------------------------------
-" NeoBundle Scripts
-"
-if has('vim_starting')
-    set nocompatible            " Be iMproved
-    "required:
-    if has('unix')
-        set runtimepath+=~/.vim/bundle/neobundle.vim/
-    else
-        set runtimepath+=$HOME/vimfiles/bundle/neobundle.vim/
-    endif
-endif
-
-"Required:
-if has('unix')
-    call neobundle#begin(expand('~/.vim/bundle'))
-else
-    call neobundle#begin(expand('$HOME/vimfiles/bundle'))
-endif
-
-
-" Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+" set the runtime path to include Vundle and initialize
+set nocompatible              " be iMproved, required
+filetype off                  " required
+if has('unix')
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+else
+  set rtp+=$HOME/.vim/bundle/Vundle.vim/
+  call vundle#begin('$HOME/.vim/bundle/')
+endif
+
+
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles here:
-" You can specify revision/branch/tag.
-" NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'bling/vim-airline'
-" NeoBundle "MarcWeber/vim-addon-mw-utils"
-" NeoBundle "tomtom/tlib_vim"
-" NeoBundle "garbas/vim-snipmate"
-NeoBundle "pangloss/vim-javascript"
-NeoBundle "scrooloose/nerdtree"
-NeoBundle "tpope/vim-git"
-NeoBundle "godlygeek/tabular"
-NeoBundle "plasticboy/vim-markdown"
-NeoBundle "tpope/vim-surround"
-NeoBundle "tpope/vim-repeat"
-NeoBundle "vim-scripts/matchit.zip"
-NeoBundle "vim-scripts/tComment"
-NeoBundle "vim-scripts/jQuery"
-NeoBundle "vim-scripts/a.vim"
-NeoBundle "szw/vim-ctrlspace"
-NeoBundle "KohPoll/vim-less.git"
+Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'kien/ctrlp.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'Shougo/vimshell'
+Plugin 'vim-airline/vim-airline'    " replace 'bling/vim-airline'
+" " Plugin "MarcWeber/vim-addon-mw-utils"
+" " Plugin "tomtom/tlib_vim"
+" " Plugin "garbas/vim-snipmate"
+Plugin 'scrooloose/nerdtree'      " error happen 
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'tomtom/tcomment_vim' " replace 'vim-scripts/tComment'
+Plugin 'vim-scripts/a.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'vim-ctrlspace/vim-ctrlspace'  " error 
+
+" For git
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
 
 " For python
-NeoBundle "klen/python-mode.git"
-NeoBundle "scrooloose/syntastic.git"   " Replace pyflake
+Plugin 'klen/python-mode.git'
+Plugin 'scrooloose/syntastic.git'   " Replace pyflake
 
-"For django template
-NeoBundle "vim-scripts/django.vim"
+" For django template
+Plugin 'vim-scripts/django.vim'
+
+" For javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'vim-scripts/jQuery'
+
+" For LESS
+Plugin 'KohPoll/vim-less.git'
+
+" For Golang
+" Plugin 'fatih/vim-go'
 
 " Required:
-call neobundle#end()
+call vundle#end()
 
 " Required:
 filetype plugin indent on
 
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
+" Brief help
+"
 
 
 " change CtrlSpace key map in win32
