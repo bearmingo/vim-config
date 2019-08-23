@@ -4,7 +4,7 @@
 " Vim base settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"set leader ','
+" set leader ','
 let mapleader=","
 let g:mapleader=","
 
@@ -180,17 +180,19 @@ if has("gui_running")
 "   set guioptions-=r " 隐藏右侧滚动条
 "   set guioptions-=b " 隐藏询问滚动条
 "   set guioptions=0  " 隐藏tab栏
+  set langmenu=zh_CN.UTF-8   "设置菜单语言
+  language messages zh_CN.utf-8          "设置提示信息语言
 endif
 
 "编辑vim配置文件
 if has("unix")
     set fileformats=unix,dos,mac
-    nmap <leader>e :tabnew $HOME/.vimrc<cr>
-    let $VIMFILES = $HOME."/.vim"
+    nmap <leader>e :tabnew ~/.vimrc<cr>
+    let $VIMFILES = "~/.vim"
 else
     set fileformats=dos,unix,mac
-    nmap <leader>e :tabnew $VIM/_vimrc<CR>
-    let $VIMFILES = $VIM."./vim73"
+    nmap <leader>e :tabnew $HOME/.vimrc<CR>
+    let $VIMFILES = $HOME."/.vim"
 endif
 
 " Atl-Space is System menu
@@ -207,26 +209,27 @@ set helplang=cn
 "
 
 " {{{ 编码字体设置
-"   if has("multi_byte")
-"     set encoding=unicode
-"     let &termencoding = &encoding
-"     " Set default encoding as UTF-8 with not BOM
-"     setglobal fileencoding=utf-8 bomb
-"     " Auto detect the file encoding BOM unicode, utf-8, GBK, Big5, Latin1
-"     set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
-"
-"     " Walkaround the encoding problem for fenc=utf-8 && enc=ucs-2
-"     augroup i18n
-"         autocmd!
-"         autocmd BufReadPost * if &fileencoding == "utf-8" | let &encoding = &fileencoding | endif
-"     augroup END
-"   endif
+if has("multi_byte")
+    set encoding=unicode
+    " let &termencoding = &encoding
+    set termencoding=utf-8
+    " Set default encoding as UTF-8 with not BOM
+    setglobal fileencoding=utf-8
+    " Auto detect the file encoding BOM unicode, utf-8, GBK, Big5, Latin1
+    set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
 
-set termencoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
-set ambiwidth=double
-"set guifont=YaHei\ Consolas\ Hybrid:h12
-"set guifont=Inconsolata\ 11
+   " Walkaround the encoding problem for fenc=utf-8 && enc=ucs-2
+    augroup i18n
+        autocmd!
+        autocmd BufReadPost * if &fileencoding == "utf-8" | let &encoding = &fileencoding | endif
+    augroup END
+endif
+
+" set termencoding=utf-8
+" set fileencodings=ucs-bom,utf-8,cp936,cp950,latin1
+" set ambiwidth=double
+" set guifont=YaHei\ Consolas\ Hybrid:h12
+" set guifont=Inconsolata\ 11
 set guifont=Monaco:h11
 " }}}
 
@@ -312,7 +315,8 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'tomtom/tcomment_vim' " replace 'vim-scripts/tComment'
 Plugin 'vim-scripts/a.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-" Plugin 'vim-ctrlspace/vim-ctrlspace'  " error 
+Plugin 'taglist.vim'
+Plugin 'vim-ctrlspace/vim-ctrlspace'  " error in windows
 
 " For git
 Plugin 'tpope/vim-git'
@@ -345,11 +349,12 @@ filetype plugin indent on
 "
 
 
-" change CtrlSpace key map in win32
-"if has("win32")
-let g:ctrlspace_default_mapping_key = "<S-Space>"
-"endif
-
+" Change CtrlSpace key map in win32
+if has("win32")
+  let g:CtrlSpaceDefaultMappingKey = "<S-Space>"
+endif
+nmap <leader>c :CtrlSpace<CR>
+    
 
 " PHP Twig 模板引擎语法
 "au BufRead,BufNewFile *.twig set syntax=twig
@@ -540,22 +545,16 @@ let NERDTreeShowBookmarks=0
 " 是否默认显示文件
 let NERDTreeShowFiles=1
 " 是否默认显示隐藏文件
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=0
 " 是否默认显示行号
 let NERDTreeShowLineNumbers=0
 " 窗口位置（'left' or 'right'）
 let NERDTreeWinPos='left'
 " 窗口宽度
-let NERDTreeWinSize=31
-
-
+let NERDTreeWinSize=30
 let NERDTreeIgnore=['\.vim$','\~$','\.pyc$'] "no show specified files
-let NERDTreeShowHidden=0    "show hidden file
 let NERDTreeSortOrder=['\/$','\.cpp$','\.c$','\.h$', '*']  "order
 let NERDTreeCaseSensitiveSort=0 " no case sensitive
-let NERDTreeWinSize=30
-"let NERDTreeShowLineNumbers=1
-"let NERDTreeShowBookmarks=1
 "let NERDTreeQuitOnOpen=1
 "let NERDTreeHighlightCursorline=1
 
